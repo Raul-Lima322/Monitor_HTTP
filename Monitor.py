@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 
 contadorGeral = 0
 contadorSucesso = 0
@@ -26,6 +27,9 @@ try:
             url = requests.get("https://" + urlUser, auth=('user', 'pass'))
         elif escolha == "2":
             url = requests.get("http://" + urlUser, auth=('user', 'pass'))
+        else: 
+            print("[!] Operação inválida")
+            continue
         try:
             time.sleep(0.3)
             if url.status_code == 200:
@@ -42,7 +46,7 @@ try:
                 contadorGeral += 1
         except requests.exceptions.RequestException:
             contadorPerdido +=1
-            print("[+] Host inacesivel / Erro de conexão. \n")
+            print("[!] Host inacesivel / Erro de conexão. \n")
 
         contadorGeral +=1
 
@@ -51,6 +55,9 @@ except KeyboardInterrupt:
    print(f"Pacotes enviados: {contadorGeral}")
    print(f"Pacotes recebidos com sucesso: {contadorSucesso}")
    print(f"Pacotes perdidos: {contadorPerdido}")
-   print("\n" +"=" * 25)
+   print("=" * 25)
 
+
+if os.name == "nt":
+    input("\n[+] Aperte Enter para fechar ") # Necessario para que o programa não feche sozinho
    

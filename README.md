@@ -1,2 +1,1 @@
-#HTTP CHECKER
-monitor de disponibilidade de rede
+Monitor de disponibilidade de rede protocolo HTTP/HTTPS

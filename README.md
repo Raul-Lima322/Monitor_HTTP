@@ -1,1 +1,1 @@
-Monitor de disponibilidade de rede protocolo HTTP/HTTPS feito em python3
+Monitor de disponibilidade de rede protocolo HTTP/HTTPS com python3

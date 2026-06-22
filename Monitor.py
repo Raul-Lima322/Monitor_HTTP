@@ -1,16 +1,13 @@
 import requests
 import time
 import os
-from colorama import Fore, Back, Style, init
-
-init()
 
 contadorGeral = 0
 contadorSucesso = 0
 contadorPerdido = 0
 
 while True:
-    urlUser = input("Digite um url: \n").strip()
+    urlUser = input("Digite um url: ").strip()
 
     if not urlUser:
         print("[!] Valor esperado. ")
@@ -33,26 +30,26 @@ try:
             elif escolha == "2":
                 url = requests.get("http://" + urlUser, auth=('user', 'pass'), timeout=5)
             
-            # O sleep e as checagens precisam ficar DENTRO do try interno
+         
             time.sleep(0.3)
             
             if url.status_code == 200:
                 contadorSucesso += 1
-                print(Fore.GREEN + "[ONLINE]" + Style.RESET_ALL)
+                print("[ONLINE]")
             elif url.status_code in [401, 403]:
                 contadorPerdido += 1
-                print(Fore.RED + "Acesso negado" + Style.RESET_ALL)
+                print("Acesso negado")
             elif url.status_code == 404:
                 contadorPerdido += 1
-                print(Fore.RED + "Não encontrado" + Style.RESET_ALL)
+                print("Não encontrado")
             else:
-                print(Fore.YELLOW + "[!] Erro. " + Style.RESET_ALL)
+                print("[!] Erro.")
                 contadorPerdido += 1
 
         except requests.exceptions.RequestException:
             contadorPerdido += 1
-            print(Fore.LIGHTYELLOW_EX + "[!] Host inacessível / Erro de conexão." + Style.RESET_ALL)
-
+            print("[!] Host inacessível / Erro de conexão." )
+            time.sleep(0.6)
         contadorGeral += 1
 
 except KeyboardInterrupt:
